@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: zipkin-ms-1
+spec:
+  selector:
+    app: zipkin-ms-1
+  ports:
+    - protocol: "TCP"
+      # Port accessible inside cluster
+      port: 8080
+      # Port to forward to inside the pod
+      targetPort: 8080
+      # Port accessible outside cluster
+      nodePort: 30000
+  type: NodePort

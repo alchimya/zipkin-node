@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin-ms-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin-ms-2
+  template:
+    metadata:
+      labels:
+        app: zipkin-ms-2
+    spec:
+      containers:
+        - name: zipkin-ms-2
+          image: zipkin-lab/zipkin-ms-2:v1.0.0
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Never
+          env:
+            - name: ZIPKIN_MS_3_URI
+              value: http://zipkin-ms-3.default.svc.cluster.local:8080

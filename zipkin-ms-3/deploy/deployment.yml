@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin-ms-3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin-ms-3
+  template:
+    metadata:
+      labels:
+        app: zipkin-ms-3
+    spec:
+      containers:
+        - name: zipkin-ms-3
+          image: zipkin-lab/zipkin-ms-3:v1.0.0
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Never
+
